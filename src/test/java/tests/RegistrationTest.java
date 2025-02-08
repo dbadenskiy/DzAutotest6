@@ -1,21 +1,13 @@
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
+package tests;
+
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class SimpleJunitTest {
+public class RegistrationTest extends TestBase{
 
-
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.pageLoadStrategy = "eager";
-        Configuration.timeout = 5000;
-    }
 
     @Test
     void fillFormTest() {
@@ -52,3 +44,4 @@ public class SimpleJunitTest {
         $(".table").shouldHave(text("State and City")).shouldHave(text("NCR Delhi"));
     }
 }
+
