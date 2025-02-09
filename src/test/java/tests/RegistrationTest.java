@@ -1,47 +1,49 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationTest extends TestBase{
 
+    RegistrationPage registrationPage = new RegistrationPage();
+
 
     @Test
-    void fillFormTest() {
-        open("/automation-practice-form");
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
-        $("#firstName").setValue("Dmitrij");
-        $("#lastName").setValue("Badenskiy");
-        $("#userEmail").setValue("Dima@mail.ru");
-        $("#genterWrapper").$(byText("Male")).click();
-        $("#userForm #userNumber").setValue("9771970000");
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption("March");
-        $(".react-datepicker__year-select").selectOption("1996");
-        $(".react-datepicker__day--029:not(.react-datepicker__day--outside-month)").click();
-        $("#subjectsInput").setValue("Maths").pressEnter();
-        $("#hobbiesWrapper").$(byText("Sports")).click();
-        $("#uploadPicture").uploadFromClasspath("Test.jpg");
-        $("#currentAddress").setValue("Moscow");
-        $("#react-select-3-input").setValue("NCR").pressEnter();
-        $("#react-select-4-input").setValue("Delhi").pressEnter();
-        $("#submit").click();
+    void registrationFormTest() {
+        registrationPage.openPage()
+                .removeBanner ()
+                .setFirsName("Dmitrij")
+                .setLastName("Badenskiy")
+                .setEmail("Dima@mail.ru")
+                .setGender("Male")
+                .setUserNumber("9771970000")
+                .setDateOfBirth("29","03","1996")
+                .setSubject("Maths")
+                .setHobby("Sports")
+                .uploadPicture("Test.jpg")
+                .setAddress("Moscow")
+                .setState("NCR")
+                .setCity("Delhi")
+                .submitForm();
 
-        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
-        $(".table").shouldHave(text("Student Name")).shouldHave(text("Dmitrij Badenskiy"));
-        $(".table").shouldHave(text("Student Email")).shouldHave(text("Dima@mail.ru"));
-        $(".table").shouldHave(text("Gender")).shouldHave(text("Male"));
-        $(".table").shouldHave(text("Mobile")).shouldHave(text("9771970000"));
-        $(".table").shouldHave(text("Date of Birth")).shouldHave(text("29 March,1996"));
-        $(".table").shouldHave(text("Subjects")).shouldHave(text("Maths"));
-        $(".table").shouldHave(text("Hobbies")).shouldHave(text("Sports"));
-        $(".table").shouldHave(text("Picture")).shouldHave(text("Test.jpg"));
-        $(".table").shouldHave(text("Address")).shouldHave(text("Moscow"));
-        $(".table").shouldHave(text("State and City")).shouldHave(text("NCR Delhi"));
+
+
+        registrationPage.checkResult("Student Name", "Dmitrij Badenskiy")
+                .checkResult("Student Email", "Dima@mail.ru")
+                .checkResult("Gender", "Male")
+                .checkResult("Mobile", "9771970000")
+                .checkResult("Date of Birth", "29 March,1996")
+                .checkResult("Subjects", "Maths")
+                .checkResult("Hobbies", "Sports")
+                .checkResult("Picture", "Test.jpg")
+                .checkResult("Address", "Moscow")
+                .checkResult("State and City", "NCR Delhi");
+
+
+
+
+
+
     }
 }
-
