@@ -29,7 +29,7 @@ public class RegistrationTest extends TestBase{
 
 
 
-        registrationPage.checkResult("Student Name", "Dmitrij Badenskiy")
+        registrationPage.checkResult("Student Name", "Dmitrij Badenskii")
                 .checkResult("Student Email", "Dima@mail.ru")
                 .checkResult("Gender", "Male")
                 .checkResult("Mobile", "9771970000")
