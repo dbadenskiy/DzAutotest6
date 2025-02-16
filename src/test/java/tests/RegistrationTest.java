@@ -40,10 +40,36 @@ public class RegistrationTest extends TestBase{
                 .checkResult("Address", "Moscow")
                 .checkResult("State and City", "NCR Delhi");
 
+    }
+    @Test
+    void requiredFieldsTest() {
+        registrationPage.openPage()
+                .removeBanner ()
+                .setFirsName("Dmitrij")
+                .setLastName("Badenskiy")
+                .setGender("Male")
+                .setUserNumber("9771970000")
+                .submitForm();
 
+        registrationPage.checkResult("Student Name", "Dmitrij Badenskiy")
+                .checkResult("Gender", "Male")
+                .checkResult("Mobile", "9771970000");
 
+    }
+
+    @Test
+    void mobilePhoneValidationTest() {
+        registrationPage.openPage()
+                .removeBanner ()
+                .setFirsName("Dmitrij")
+                .setLastName("Badenskiy")
+                .setGender("Male")
+                .setUserNumber("85494387346347437")
+                .submitForm()
+                .checkResultNegativ();
 
 
 
     }
 }
+

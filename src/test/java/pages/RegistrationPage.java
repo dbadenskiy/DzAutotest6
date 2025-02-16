@@ -1,5 +1,6 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
 import pages.components.TableComponent;
@@ -110,6 +111,11 @@ public class RegistrationPage {
 
     public RegistrationPage checkResult(String key, String value) {
         tableComponent.checkResultTest(key, value);
+        return this;
+    }
+
+    public RegistrationPage checkResultNegativ() {
+        userNumberInput.shouldHave(Condition.cssValue("border-color", "rgb(220, 53, 69)"));
         return this;
     }
 }
