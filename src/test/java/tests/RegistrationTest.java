@@ -64,7 +64,7 @@ public class RegistrationTest extends TestBase{
                 .setFirsName("Dmitrij")
                 .setLastName("Badenskiy")
                 .setGender("Male")
-                .setUserNumber("85494387346347437")
+                .setUserNumber("mf8m3okvi4")
                 .submitForm()
                 .checkResultNegativ();
 
